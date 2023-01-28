@@ -82,6 +82,25 @@ app.post("/users",(req,res)=>{
         data:users,
     })
 })
+
+//deleting a user by id 
+app.delete("/users/:id",(req,res)=>{
+    const {id}=req.params;
+    const user = users.find((eachUser)=>eachUser.id===id);
+
+    if(!user){
+        return res.status(404).json({
+            success:false,
+            message:"The id of the user dont exist",
+        })
+    }
+    const index=users.indexOf(user);
+    users.splice(index, 1);
+    return res.status(202).json({
+        success:true,
+        data:users,
+    });
+})
 app.get("*",(req,res)=>{
     res.status(404).json({
         message:"this rout is not exist"
