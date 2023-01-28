@@ -3,13 +3,13 @@ const {users}=require("../data/users.json");
 
 const router = express.Router();
 
-router.get("/users",(req,res)=>{
+router.get("/",(req,res)=>{
     res.status(200).json({
         success:true,
         data:users,
     });
 });
-router.get("/users/:id",(req,res)=>{
+router.get("/:id",(req,res)=>{
     const {id}=req.params
     const user=users.find((each)=>each.id===id);
     if(!user){
@@ -23,7 +23,7 @@ router.get("/users/:id",(req,res)=>{
         data:user,
     })
 });
-router.put("/users/:id",(req,res)=>{
+router.put("/:id",(req,res)=>{
     const{id}=req.params;
     const{data}=req.body;
 
@@ -48,7 +48,7 @@ router.put("/users/:id",(req,res)=>{
         data:updatingUser,
     })
 });
-router.post("/users",(req,res)=>{
+router.post("",(req,res)=>{
     const {id,name,surname,email,subscriptionType,subscriptionDate}=req.body;
     const user=users.find((each)=>each.id===id);
 
@@ -74,7 +74,7 @@ router.post("/users",(req,res)=>{
 })
 
 //deleting a user by id 
-router.delete("/users/:id",(req,res)=>{
+router.delete("/:id",(req,res)=>{
     const {id}=req.params;
     const user = users.find((eachUser)=>eachUser.id===id);
 
